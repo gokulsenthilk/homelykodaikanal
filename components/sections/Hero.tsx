@@ -1,0 +1,35 @@
+import Image from "next/image";
+
+export function Hero() {
+  return (
+    <section className="hero" id="home" aria-labelledby="hero-title">
+      <Image
+        className="hero-image"
+        src="/images/hero-kodaikanal.png"
+        alt="Misty sunrise over Kodaikanal Lake and green hills"
+        fill
+        priority
+        sizes="100vw"
+      />
+      <div className="hero-shade" />
+      <div className="hero-content">
+        <h1 id="hero-title">Kodaikanal Tourism</h1>
+        <p>
+          Misty hills, lake walks, pine forests, waterfalls, and calm stays shaped into simple trip plans for
+          families, couples, and small groups.
+        </p>
+        <div className="hero-actions">
+          <a className="button primary" href="#places">
+            <span>Explore Places</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </a>
+          <a className="button ghost" href="#holiday-packages">
+            View Packages
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
