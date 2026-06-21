@@ -1,16 +1,23 @@
 import type { Metadata, Viewport } from "next";
+import { Spinnaker } from "next/font/google";
 import "./globals.css";
+
+const spinnaker = Spinnaker({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-primary"
+});
 
 export const metadata: Metadata = {
   title: {
-    default: "Kodaikanal Tourism",
-    template: "%s | Kodaikanal Tourism"
+    default: "Homely Kodai",
+    template: "%s | Homely Kodai"
   },
   description:
     "Explore places to visit in Kodaikanal, holiday packages, and stay packages for a peaceful hill-station trip.",
   metadataBase: new URL("https://kodaikanal-tourism.example"),
   openGraph: {
-    title: "Kodaikanal Tourism",
+    title: "Homely Kodai",
     description:
       "Misty hills, lake walks, pine forests, waterfalls, and calm stays shaped into simple Kodaikanal trip plans.",
     images: ["/images/hero-kodaikanal.png"]
@@ -29,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html className={spinnaker.variable} lang="en">
       <body>{children}</body>
     </html>
   );

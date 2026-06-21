@@ -3,6 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { IntroStrip } from "@/components/sections/IntroStrip";
 import { PlacesSection } from "@/components/sections/PlacesSection";
+import { PropertiesSection } from "@/components/sections/PropertiesSection";
 import { StayPackagesSection } from "@/components/sections/StayPackagesSection";
 import { TripPlanner } from "@/components/sections/TripPlanner";
 
@@ -15,6 +16,7 @@ export default function Home() {
       <main>
         <Hero />
         <IntroStrip />
+        <PropertiesSection />
         <PlacesSection />
         <TripPlanner />
         <StayPackagesSection />

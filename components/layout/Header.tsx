@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { navItems } from "@/data/site";
@@ -23,9 +24,11 @@ export function Header() {
 
   return (
     <header className={headerClassName}>
-      <Link className="brand" href="/#home" aria-label="Kodaikanal Tourism home">
-        <span className="brand-mark">K</span>
-        <span>Kodaikanal Tourism</span>
+      <Link className="brand" href="/#home" aria-label="Homely Kodai home">
+        <span className="brand-mark" aria-hidden="true">
+          <Image src="/images/homely-logo.png" alt="" width={40} height={40} priority />
+        </span>
+        <span>Homely Kodai</span>
       </Link>
 
       <button

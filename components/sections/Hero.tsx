@@ -13,7 +13,7 @@ export function Hero() {
       />
       <div className="hero-shade" />
       <div className="hero-content">
-        <h1 id="hero-title">Kodaikanal Tourism</h1>
+        <h1 id="hero-title">Homely Kodai</h1>
         <p>
           Misty hills, lake walks, pine forests, waterfalls, and calm stays shaped into simple trip plans for
           families, couples, and small groups.

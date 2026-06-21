@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
-import { holidayPackages } from "@/data/site";
+import { contactHref, contactNumber, holidayPackages } from "@/data/site";
 
 type PackageFilter = "all" | "family" | "couple";
 
@@ -123,6 +123,9 @@ export function TripPlanner() {
         <div>
           <h2 id="contact-title">Plan your Kodaikanal trip</h2>
           <p>{inquiryStatus}</p>
+          <a className="contact-number" href={contactHref}>
+            Call {contactNumber}
+          </a>
         </div>
         <form className="contact-form" onSubmit={handleSubmit}>
           <label>
