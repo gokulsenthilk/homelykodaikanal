@@ -120,22 +120,22 @@ const defaultPlaces: PlaceRow[] = [
 ];
 
 export async function getPlaces(options: GetPlacesOptions = {}): Promise<Place[]> {
-  const supabase = createSupabaseServerClient();
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 4500);
-  const selectPlaces = (columns: string) => {
-    return supabase
-      .from("places")
-      .select(columns)
-      .order("sort_order", { ascending: true })
-      .order("id", { ascending: true })
-      .abortSignal(controller.signal);
-  };
-
   let data: unknown[] | null = null;
   let error: { message: string } | null = null;
 
   try {
+    const supabase = createSupabaseServerClient();
+    const selectPlaces = (columns: string) => {
+      return supabase
+        .from("places")
+        .select(columns)
+        .order("sort_order", { ascending: true })
+        .order("id", { ascending: true })
+        .abortSignal(controller.signal);
+    };
+
     ({ data, error } = await selectPlaces("name, description, image_url, image_alt, sort_order"));
 
     if (error?.message.includes("image_alt")) {
