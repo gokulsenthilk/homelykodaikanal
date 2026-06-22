@@ -15,6 +15,13 @@ export type StayPackage = {
   price: string;
 };
 
+export type ServiceOffer = {
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+};
+
 export type Property = {
   name: string;
   slug: string;
@@ -43,6 +50,7 @@ export const navItems = [
   { label: "Properties", href: "/properties" },
   { label: "Holiday Packages", href: "/holiday-packages" },
   { label: "Stay Packages", href: "/stay-packages" },
+  { label: "Services", href: "/services" },
   { label: "Places", href: "/places" },
   { label: "Contact", href: "/contact" }
 ] as const;
@@ -104,6 +112,58 @@ export const stayPackages: StayPackage[] = [
       "Premium five-bedroom valley-view villa in Vala Kattu Odai for larger families, celebrations, and group getaways, with garden, balconies, bonfire, and barbecue options.",
     propertySlug: "veranda-luxe-stay",
     price: "Call for current tariff"
+  }
+];
+
+export const serviceOffers: ServiceOffer[] = [
+  {
+    title: "Corporate Booking",
+    description:
+      "We help teams plan comfortable corporate stays in Kodaikanal with property suggestions, room coordination, meal preferences, transport support, and simple communication for group arrivals. Whether it is a small leadership retreat, a workation, or a relaxed team break, we match the stay style with privacy, parking, gathering space, and a practical local schedule.",
+    image: "/images/properties/veranda-luxe/gallery-01.jpg",
+    imageAlt: "Veranda Luxe Stay exterior suitable for corporate group stays"
+  },
+  {
+    title: "Jeep Rides",
+    description:
+      "For guests who want a more adventurous hill-station day, we can arrange jeep ride guidance through scenic local routes, forest edges, viewpoints, village roads, and countryside stretches around Kodaikanal. The ride plan can be kept easy for families or made more energetic for groups who want a rugged outdoor experience.",
+    image: "/images/pine-forest.png",
+    imageAlt: "Pine forest route in Kodaikanal for jeep ride planning"
+  },
+  {
+    title: "Tent Stay",
+    description:
+      "Tent stay requests are handled based on weather, group size, safety, and availability. We help guests understand suitable locations, basic comfort expectations, food coordination, late-evening arrangements, and backup stay options, so the camping-style experience stays practical and comfortable in Kodaikanal conditions.",
+    image: "/images/places/mannavanur-lake.webp",
+    imageAlt: "Open lakeside landscape near Kodaikanal for tent stay planning"
+  },
+  {
+    title: "Bus, Cab, Train, and Flight Booking",
+    description:
+      "Travel planning can include help with bus, cab, train, and flight booking coordination, including pickup points, arrival timing, cab connections from nearby transit hubs, and local sightseeing vehicle needs. The goal is to keep the full trip connected from departure to check-in and from checkout to return travel.",
+    image: "/images/lake.png",
+    imageAlt: "Kodaikanal Lake route used for trip transport planning"
+  },
+  {
+    title: "Itinerary Making for Couples, Family, and Groups",
+    description:
+      "We create Kodaikanal itineraries around the people travelling, not just a list of places. Couple plans can stay slow and private, family plans can balance elders and children, and group plans can include viewpoints, lake time, food stops, property time, celebrations, and flexible rest slots across two to four days.",
+    image: "/images/places/coakers-walk.webp",
+    imageAlt: "Coaker's Walk viewpoint used for custom Kodaikanal itinerary planning"
+  },
+  {
+    title: "Birthday and Anniversary Celebration",
+    description:
+      "Celebration support can include room decoration, cakes, surprise setups, bed decor, simple floral touches, candlelight-style arrangements, and timing coordination with the stay. We keep the setup aligned with the occasion, guest preference, property rules, and available local vendors so the surprise feels personal and manageable.",
+    image: "/images/properties/veranda-luxe/gallery-09.jpg",
+    imageAlt: "Veranda Luxe Stay bonfire and cake setup for birthday and anniversary celebrations"
+  },
+  {
+    title: "Food Based on Preference",
+    description:
+      "Food support is planned around guest preference, group size, dietary needs, and the stay format. We can coordinate homely meals, breakfast needs, vegetarian or non-vegetarian preferences, simple snacks, celebration food, and local-style meal suggestions so guests spend less time arranging food and more time enjoying the stay.",
+    image: "/images/properties/veranda-luxe/gallery-05.jpg",
+    imageAlt: "Veranda Luxe Stay dining area for food preference coordination"
   }
 ];
 

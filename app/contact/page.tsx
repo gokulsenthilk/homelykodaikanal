@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { AboutSection } from "@/components/sections/AboutSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export default function ContactPage() {
             Kodaikanal.
           </p>
         </section>
+        <AboutSection />
         <ContactSection status="Tell us your travel date, guest count, and the kind of trip you want. Homely Kodai will follow up with practical stay and route options." />
       </main>
       <Footer />
