@@ -9,6 +9,7 @@
   --tertiary: #78ada2;
   --stone: #72857c;
   --accent: #d4a63f;
+  --sand: #edf3e8;
   --green: var(--primary);
   --green-dark: var(--primary-deep);
   --blue: var(--tertiary);
@@ -18,6 +19,7 @@
   --line: rgba(23, 52, 38, 0.16);
   --shadow: 0 20px 60px rgba(18, 59, 42, 0.16);
   --radius: 8px;
+  --header-offset: 96px;
   font-family: var(--font-primary), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -27,6 +29,11 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: var(--header-offset);
+}
+
+[id] {
+  scroll-margin-top: var(--header-offset);
 }
 
 body {
@@ -129,8 +136,14 @@ select {
   transition: width 180ms ease;
 }
 
-.site-nav a:hover::after {
+.site-nav a:hover::after,
+.site-nav a.active::after {
   width: 100%;
+}
+
+.site-header.scrolled .site-nav a.active,
+.site-header.menu-open .site-nav a.active {
+  color: var(--primary);
 }
 
 .menu-toggle {
@@ -442,14 +455,23 @@ select {
     var(--bg);
 }
 
-.places-hero {
+.subpage {
+  min-height: 100vh;
+  background:
+    linear-gradient(180deg, rgba(18, 59, 42, 0.98) 0%, rgba(31, 111, 74, 0.92) 300px, rgba(244, 248, 241, 0) 650px),
+    var(--bg);
+}
+
+.places-hero,
+.route-hero {
   width: min(1180px, calc(100% - 40px));
   margin: 0 auto;
   padding: 150px 0 70px;
   color: var(--white);
 }
 
-.places-hero span {
+.places-hero span,
+.route-hero span {
   display: block;
   margin-bottom: 14px;
   color: rgba(220, 235, 217, 0.9);
@@ -458,7 +480,8 @@ select {
   text-transform: uppercase;
 }
 
-.places-hero h1 {
+.places-hero h1,
+.route-hero h1 {
   max-width: 900px;
   margin: 0;
   font-size: clamp(2.75rem, 6vw, 6rem);
@@ -466,7 +489,8 @@ select {
   letter-spacing: 0;
 }
 
-.places-hero p {
+.places-hero p,
+.route-hero p {
   max-width: 680px;
   margin: 24px 0 30px;
   color: rgba(255, 255, 255, 0.78);
@@ -685,16 +709,58 @@ select {
 }
 
 .stay-media {
+  position: relative;
+  display: grid;
   overflow: hidden;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
 }
 
-.stay-media img {
+.stay-media img,
+.stay-property-photo {
   width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 5;
+}
+
+.stay-media img {
+  height: 100%;
   object-fit: cover;
+}
+
+.property-stay-media {
+  min-height: 560px;
+  grid-template-rows: 1.25fr 1fr;
+  gap: 1px;
+  background: rgba(23, 52, 38, 0.16);
+}
+
+.stay-property-photo {
+  position: relative;
+  display: block;
+  min-height: 240px;
+  overflow: hidden;
+}
+
+.stay-property-photo.large {
+  min-height: 320px;
+}
+
+.stay-property-photo::after {
+  position: absolute;
+  inset: auto 0 0;
+  height: 46%;
+  content: "";
+  background: linear-gradient(180deg, rgba(18, 59, 42, 0), rgba(18, 59, 42, 0.76));
+}
+
+.stay-property-photo span {
+  position: absolute;
+  z-index: 1;
+  right: 18px;
+  bottom: 16px;
+  left: 18px;
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 900;
 }
 
 .stay-list {
@@ -716,13 +782,18 @@ select {
   white-space: nowrap;
 }
 
+.stay-card .text-link {
+  display: inline-flex;
+  margin-top: 12px;
+}
+
 .contact-section {
   display: grid;
   width: min(1180px, calc(100% - 40px));
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 34px;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(620px, 1.2fr);
+  gap: 42px;
   align-items: flex-start;
-  margin: 0 auto 78px;
+  margin: clamp(44px, 5vw, 72px) auto 78px;
   padding: 34px;
   border-radius: var(--radius);
   background:
@@ -745,8 +816,9 @@ select {
 
 .contact-form {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
-  gap: 12px;
+  grid-template-columns: minmax(140px, 1fr) minmax(170px, 1.1fr) minmax(140px, 0.95fr) max-content;
+  column-gap: 20px;
+  row-gap: 14px;
 }
 
 .contact-form label {
@@ -1113,6 +1185,10 @@ select {
 }
 
 @media (max-width: 640px) {
+  :root {
+    --header-offset: 88px;
+  }
+
   .site-header {
     padding: 14px 18px;
   }
@@ -1159,12 +1235,14 @@ select {
     padding: 72px 0;
   }
 
-  .places-hero {
+  .places-hero,
+  .route-hero {
     width: calc(100% - 32px);
     padding: 120px 0 46px;
   }
 
-  .places-hero h1 {
+  .places-hero h1,
+  .route-hero h1 {
     font-size: clamp(2.3rem, 11vw, 3.4rem);
   }
 
@@ -1187,6 +1265,15 @@ select {
 
   .stay-section {
     padding: 24px;
+  }
+
+  .property-stay-media {
+    min-height: auto;
+  }
+
+  .stay-property-photo,
+  .stay-property-photo.large {
+    min-height: 220px;
   }
 
   .contact-section {

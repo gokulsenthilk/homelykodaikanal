@@ -1,17 +1,31 @@
 import Image from "next/image";
-import { stayPackages } from "@/data/site";
+import Link from "next/link";
+import { properties, stayPackages } from "@/data/site";
+
+const stayPackageProperties = properties.filter((property) =>
+  stayPackages.some((stayPackage) => stayPackage.propertySlug === property.slug)
+);
 
 export function StayPackagesSection() {
   return (
     <section className="section stay-section" id="stay-packages" aria-labelledby="stay-title">
-      <div className="stay-media">
-        <Image
-          src="/images/hillside-cottages.png"
-          alt="Cottages in Kodaikanal with gardens and misty valley views"
-          width={760}
-          height={950}
-          sizes="(max-width: 940px) 100vw, 42vw"
-        />
+      <div className="stay-media property-stay-media">
+        {stayPackageProperties.map((property, index) => (
+          <Link
+            className={["stay-property-photo", index === 0 ? "large" : ""].filter(Boolean).join(" ")}
+            href={`/properties/${property.slug}`}
+            key={property.slug}
+          >
+            <Image
+              src={property.image}
+              alt={property.imageAlt}
+              width={760}
+              height={620}
+              sizes="(max-width: 940px) 100vw, 42vw"
+            />
+            <span>{property.name}</span>
+          </Link>
+        ))}
       </div>
       <div className="stay-content">
         <div className="section-heading">
@@ -25,6 +39,9 @@ export function StayPackagesSection() {
               <div>
                 <h3>{stayPackage.name}</h3>
                 <p>{stayPackage.description}</p>
+                <Link className="text-link" href={`/properties/${stayPackage.propertySlug}`}>
+                  View property
+                </Link>
               </div>
               <strong>{stayPackage.price}</strong>
             </article>

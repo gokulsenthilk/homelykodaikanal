@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export function Hero() {
   return (
@@ -19,15 +20,15 @@ export function Hero() {
           families, couples, and small groups.
         </p>
         <div className="hero-actions">
-          <a className="button primary" href="#places">
+          <Link className="button primary" href="/places">
             <span>Explore Places</span>
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M5 12h14M13 6l6 6-6 6" />
             </svg>
-          </a>
-          <a className="button ghost" href="#holiday-packages">
+          </Link>
+          <Link className="button ghost" href="/holiday-packages">
             View Packages
-          </a>
+          </Link>
         </div>
       </div>
     </section>

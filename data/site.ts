@@ -11,6 +11,7 @@ export type HolidayPackage = {
 export type StayPackage = {
   name: string;
   description: string;
+  propertySlug: string;
   price: string;
 };
 
@@ -39,11 +40,11 @@ export const contactNumber = "+91 9940305925";
 export const contactHref = "tel:+919940305925";
 
 export const navItems = [
-  { label: "Places", href: "/#places" },
-  { label: "Properties", href: "/#properties" },
-  { label: "Holiday Packages", href: "/#holiday-packages" },
-  { label: "Stay Packages", href: "/#stay-packages" },
-  { label: "Contact", href: "/#contact" }
+  { label: "Properties", href: "/properties" },
+  { label: "Holiday Packages", href: "/holiday-packages" },
+  { label: "Stay Packages", href: "/stay-packages" },
+  { label: "Places", href: "/places" },
+  { label: "Contact", href: "/contact" }
 ] as const;
 
 export const tripHighlights = [
@@ -91,19 +92,18 @@ export const holidayPackages: HolidayPackage[] = [
 
 export const stayPackages: StayPackage[] = [
   {
-    name: "Lakeside Comfort",
-    description: "Clean rooms near the lake with breakfast, parking support, and easy market access.",
-    price: "Rs. 2,800 / night"
+    name: "Belle Vue Villa 3BHK Stay",
+    description:
+      "Private 3-bedroom villa in Attuvampatti for families, couples, and small groups, with kitchen access, parking, caretaker support, and relaxed outdoor space.",
+    propertySlug: "belle-vue-villa",
+    price: "Call for current tariff"
   },
   {
-    name: "Valley View Cottage",
-    description: "Private cottage stay with bonfire setup, garden space, and morning tea views.",
-    price: "Rs. 4,500 / night"
-  },
-  {
-    name: "Premium Mist Villa",
-    description: "Villa-style stay for families and groups with kitchen access and curated local sightseeing.",
-    price: "Rs. 8,500 / night"
+    name: "Veranda Luxe 5BR Group Stay",
+    description:
+      "Premium five-bedroom valley-view villa in Vala Kattu Odai for larger families, celebrations, and group getaways, with garden, balconies, bonfire, and barbecue options.",
+    propertySlug: "veranda-luxe-stay",
+    price: "Call for current tariff"
   }
 ];
 
@@ -116,7 +116,8 @@ export const propertyLinks = {
   verandaAirbnb:
     "https://www.airbnb.co.in/rooms/1630150829936801408?source_impression_id=p3_1781633553_P3m_6N7d7v1WJerd",
   verandaStayVista:
-    "https://www.stayvista.com/villa/veranda-luxe-stay?checkin=2026-06-28&checkout=2026-06-29&rooms_booked=5"
+    "https://www.stayvista.com/villa/veranda-luxe-stay?checkin=2026-06-28&checkout=2026-06-29&rooms_booked=5",
+  verandaMaps: "https://maps.app.goo.gl/29gy1o6CjE3bjV5W6"
 } as const;
 
 export const belleVueGallery = [
@@ -271,6 +272,7 @@ export const properties: Property[] = [
     description:
       "Veranda Luxe Stay is a spacious villa for larger families and groups, built around sweeping green views, earth-toned interiors, outdoor sit-outs, a garden, bonfire evenings, barbecue add-ons, and relaxed Kodaikanal itineraries.",
     address: "Vala Kattu Odai, Kodaikanal, Tamil Nadu 624101",
+    mapUrl: propertyLinks.verandaMaps,
     airbnbUrl: propertyLinks.verandaAirbnb,
     stayVistaUrl: propertyLinks.verandaStayVista,
     instagramUrl: propertyLinks.verandaInstagram,

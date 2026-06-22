@@ -183,7 +183,7 @@ export default function BelleVueVillaPage() {
             <a className="button primary" href={contactHref}>
               {contactNumber}
             </a>
-            <Link className="button secondary" href="/#properties">
+            <Link className="button secondary" href="/properties">
               Back to properties
             </Link>
           </div>

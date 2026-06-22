@@ -1,7 +1,8 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
-import { contactHref, contactNumber, holidayPackages } from "@/data/site";
+import { useMemo, useState } from "react";
+import { holidayPackages } from "@/data/site";
+import { ContactSection } from "@/components/sections/ContactSection";
 
 type PackageFilter = "all" | "family" | "couple";
 
@@ -17,7 +18,6 @@ export function TripPlanner() {
     "Select a holiday package or tell us your dates. We will shape a simple itinerary around your group size, stay preference, and travel pace."
   );
   const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const visiblePackages = useMemo(() => {
     if (activeFilter === "all") {
@@ -33,44 +33,6 @@ export function TripPlanner() {
       `${packageName} selected. Share your dates, guest count, and stay preference so the itinerary can be tuned for your trip.`
     );
     document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setIsSubmitting(true);
-
-    const form = event.currentTarget;
-    const formData = new FormData(form);
-
-    try {
-      const response = await fetch("/api/enquiries", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          guests: formData.get("guests"),
-          name: formData.get("name"),
-          selectedPackage,
-          travelDate: formData.get("date")
-        })
-      });
-      const result = (await response.json()) as { message?: string };
-
-      setInquiryStatus(
-        result.message ??
-          "Thanks. Your Kodaikanal enquiry has been saved and is ready for follow up."
-      );
-
-      if (response.ok) {
-        form.reset();
-        setSelectedPackage(null);
-      }
-    } catch {
-      setInquiryStatus("The enquiry could not be submitted right now. Please check the Supabase connection details.");
-    } finally {
-      setIsSubmitting(false);
-    }
   };
 
   return (
@@ -119,36 +81,7 @@ export function TripPlanner() {
         </div>
       </section>
 
-      <section className="contact-section" id="contact" aria-labelledby="contact-title">
-        <div>
-          <h2 id="contact-title">Plan your Kodaikanal trip</h2>
-          <p>{inquiryStatus}</p>
-          <a className="contact-number" href={contactHref}>
-            Call {contactNumber}
-          </a>
-        </div>
-        <form className="contact-form" onSubmit={handleSubmit}>
-          <label>
-            Name
-            <input type="text" name="name" placeholder="Your name" />
-          </label>
-          <label>
-            Travel date
-            <input type="date" name="date" />
-          </label>
-          <label>
-            Guests
-            <select name="guests" defaultValue="2 guests">
-              <option>2 guests</option>
-              <option>3-5 guests</option>
-              <option>6+ guests</option>
-            </select>
-          </label>
-          <button className="button primary" type="submit">
-            {isSubmitting ? "Sending..." : "Send Enquiry"}
-          </button>
-        </form>
-      </section>
+      <ContactSection status={inquiryStatus} selectedPackage={selectedPackage} />
     </>
   );
 }

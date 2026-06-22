@@ -27,7 +27,7 @@ export default async function PlacesPage() {
             A fuller sightseeing list inspired by popular traveller routes around Kodaikanal, from the lake
             circuit to quieter countryside drives.
           </p>
-          <Link className="button primary" href="/#holiday-packages">
+          <Link className="button primary" href="/holiday-packages">
             Plan this trip
           </Link>
         </section>

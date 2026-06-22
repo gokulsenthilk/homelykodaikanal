@@ -33,8 +33,13 @@ export default function VerandaLuxeStayPage() {
               <a className="button primary" href={contactHref}>
                 Call {contactNumber}
               </a>
+              {verandaLuxe.mapUrl ? (
+                <a className="button secondary" href={verandaLuxe.mapUrl} target="_blank" rel="noreferrer">
+                  Open Google Maps
+                </a>
+              ) : null}
               {verandaLuxe.airbnbUrl ? (
-                <a className="button secondary" href={verandaLuxe.airbnbUrl} target="_blank" rel="noreferrer">
+                <a className="text-link" href={verandaLuxe.airbnbUrl} target="_blank" rel="noreferrer">
                   Airbnb listing
                 </a>
               ) : null}
@@ -87,6 +92,11 @@ export default function VerandaLuxeStayPage() {
               <h3>Address and booking links</h3>
               <p>{verandaLuxe.address}</p>
               <div className="property-actions">
+                {verandaLuxe.mapUrl ? (
+                  <a className="button secondary" href={verandaLuxe.mapUrl} target="_blank" rel="noreferrer">
+                    Directions
+                  </a>
+                ) : null}
                 {verandaLuxe.airbnbUrl ? (
                   <a className="button secondary" href={verandaLuxe.airbnbUrl} target="_blank" rel="noreferrer">
                     Open Airbnb
@@ -194,7 +204,7 @@ export default function VerandaLuxeStayPage() {
             <a className="button primary" href={contactHref}>
               {contactNumber}
             </a>
-            <Link className="button secondary" href="/#properties">
+            <Link className="button secondary" href="/properties">
               Back to properties
             </Link>
           </div>
